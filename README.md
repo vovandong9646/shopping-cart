@@ -16,6 +16,7 @@
       - show checkout form to get buyer data
    7. Products backend
       - create simple backend to send products to frontends
+      - install body-parser, express, nodemon, mongoose, dotenv
    8. Add Redux
       - create store, initialState, reducer and redux devtools
    9. Add Redux to products
