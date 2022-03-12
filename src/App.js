@@ -11,7 +11,7 @@ class App extends Component {
       products: data.products,
       size: '',
       sort: '',
-      cartItems: [],
+      cartItems: JSON.parse(localStorage.getItem('cartItems')) || [],
     };
   }
 
@@ -62,14 +62,19 @@ class App extends Component {
     this.setState({
       cartItems: items,
     });
+    localStorage.setItem('cartItems', JSON.stringify(items));
   };
 
   removeFromCart = (product) => {
     const cartItems = this.state.cartItems.slice(); // clone new
+    const carts = cartItems.filter((item) => item._id !== product._id);
     this.setState({
-      cartItems: cartItems.filter((item) => item._id !== product._id),
+      cartItems: carts,
     });
+    localStorage.setItem('cartItems', JSON.stringify(carts));
   };
+
+  createOrder = (order) => {};
 
   render() {
     return (
@@ -90,7 +95,11 @@ class App extends Component {
               <Products products={this.state.products} addToCart={this.addToCart} />
             </div>
             <div className="sidebar">
-              <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart} />
+              <Cart
+                cartItems={this.state.cartItems}
+                removeFromCart={this.removeFromCart}
+                createOrder={this.createOrder}
+              />
             </div>
           </div>
         </main>
