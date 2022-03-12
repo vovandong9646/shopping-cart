@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Original+Surfer&family=Oswald&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap');
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -24,13 +26,17 @@ header {
   padding: 0.5rem;
 }
 
-body, input, select, textarea {
+body, input, select, textarea, button {
   font-size: 1.6rem;
-  font-family: Helvetica, arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 a:hover {
   color: #ff8000;
+}
+
+a {
+  text-decoration: none;
 }
 
 header a {
@@ -49,4 +55,75 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main {
+  flex: 3 60rem;
+}
+
+.sidebar {
+  flex: 1 20rem;
+}
+
+.products {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-wrap: wrap
+}
+
+.products li {
+  flex: 1 1 29rem;
+  height: 53rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.product img {
+  width: 100%;
+  /* max-width: 37rem; */
+  /* max-height: 37rem; */
+}
+
+.product-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-price div,
+.product-price button {
+  text-align:center;
+  flex: 1;
+}
+
+.product-price div {
+  font-size: 2rem;
+}
+
+.button {
+  padding: 1rem;
+  border: 0.1rem #c0c0c0 solid;
+  background-color: #f0f0f0;
+}
+.button:hover {
+  border: 0.1rem #808080 solid;
+}
+.button.primary {
+  background-color: #ffc000;
 }

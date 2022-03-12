@@ -1,6 +1,6 @@
 1. create react app
 2. planning
-   1. create ProductList
+   1. Create ProductList
    - show list product in home page
    2. Filter components
    - filter products based on their size and sort by price
