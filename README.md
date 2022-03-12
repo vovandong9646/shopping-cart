@@ -1,15 +1,17 @@
 1. create react app
 2. planning
    1. Create ProductList
-   - show list product in home page
+      - show list product in home page
    2. Filter components
-   - filter products based on their size and sort by price
+      - filter products based on their size and sort by price
    3. Cart Component
-   - show selected items in the cart on the right sidebar
+      - show selected items in the cart on the right sidebar
    4. Add Animation
-   - add animation product list and add to cart
+      - add animation product list and add to cart
+      - install react-reveal
    5. Add modal
       - show modal when use click on product
+      - install react-modal
    6. Checkout Form
       - show checkout form to get buyer data
    7. Products backend
