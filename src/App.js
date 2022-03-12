@@ -2,6 +2,7 @@ import data from './data.json';
 import React, { Component } from 'react';
 import Products from './components/Products';
 import Filter from './components/Filter';
+import Cart from './components/Cart';
 
 class App extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class App extends Component {
       products: data.products,
       size: '',
       sort: '',
+      cartItems: [],
     };
   }
 
@@ -30,7 +32,6 @@ class App extends Component {
 
   sortProducts = (event) => {
     const sort = event.target.value;
-    console.log(sort);
     this.setState({
       sort: sort,
       products: this.state.products.slice().sort((a, b) => {
@@ -42,6 +43,31 @@ class App extends Component {
           return a._id > b._id ? 1 : -1;
         }
       }),
+    });
+  };
+
+  addToCart = (product) => {
+    const cartItems = this.state.cartItems.slice(); // clone new array
+    const itemExists = cartItems.find((item) => item._id === product._id);
+    let items = [];
+    if (itemExists) {
+      // ton tai item trong cart
+      items = cartItems.map((item) => {
+        return item._id === itemExists._id ? { ...item, quantity: itemExists.quantity + 1 } : item;
+      });
+    } else {
+      // khong ton tai item trong cart
+      items = [...cartItems, { ...product, quantity: 1 }];
+    }
+    this.setState({
+      cartItems: items,
+    });
+  };
+
+  removeFromCart = (product) => {
+    const cartItems = this.state.cartItems.slice(); // clone new
+    this.setState({
+      cartItems: cartItems.filter((item) => item._id !== product._id),
     });
   };
 
@@ -61,9 +87,11 @@ class App extends Component {
                 filterProducts={this.filterProducts}
                 sortProducts={this.sortProducts}
               />
-              <Products products={this.state.products} />
+              <Products products={this.state.products} addToCart={this.addToCart} />
             </div>
-            <div className="sidebar">Carts</div>
+            <div className="sidebar">
+              <Cart cartItems={this.state.cartItems} removeFromCart={this.removeFromCart} />
+            </div>
           </div>
         </main>
         <footer>All right is reserved</footer>
