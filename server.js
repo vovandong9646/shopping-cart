@@ -7,9 +7,15 @@ const app = express();
 
 app.use(bodyParser.json());
 
+app.use('/', express.static(__dirname + '/build'));
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/build/index.html');
+});
+
 mongoose
   .connect(
-    'mongodb+srv://vandong:vandong@cluster0.faejl.mongodb.net/react-shopping-cart-db?retryWrites=true&w=majority',
+    process.env.MONGODB_URI ||
+      'mongodb+srv://vandong:vandong@cluster0.faejl.mongodb.net/react-shopping-cart-db?retryWrites=true&w=majority',
   )
   .then((res) => console.log('connect mongoose successfully'))
   .catch((error) => console.log(error));
