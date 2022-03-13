@@ -46,10 +46,7 @@ class Products extends Component {
                     </a>
                     <div className="product-price">
                       <div>{formatCurrency(product.price)}</div>
-                      <button
-                        className="button primary"
-                        onClick={() => this.props.addToCart(this.props.cartItems, product)}
-                      >
+                      <button className="button primary" onClick={() => this.props.addToCart(product)}>
                         Add to Cart
                       </button>
                     </div>
@@ -86,7 +83,7 @@ class Products extends Component {
                     <button
                       className="button primary"
                       onClick={() => {
-                        this.props.addToCart(this.props.cartItems, product);
+                        this.props.addToCart(product);
                         this.closeModal();
                       }}
                     >
@@ -102,7 +99,7 @@ class Products extends Component {
     );
   }
 }
-export default connect((state) => ({ products: state.products.filteredItems, cartItems: state.carts.cartItems }), {
+export default connect((state) => ({ products: state.products.filteredItems }), {
   fetchProducts,
   addToCart,
 })(Products);
